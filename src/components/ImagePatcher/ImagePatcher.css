@@ -1,0 +1,78 @@
+.imagePatcherWrapper {
+  height: calc(100% - 30px);
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+}
+
+.imgWrapper {
+  max-height: calc(100% - 90px);
+  border: 1px solid;
+}
+
+.region {
+  position: absolute;
+  right: 0;
+  top: -23px;
+  width: 100%;
+}
+
+.buttonWrapper {
+  display: flex;
+  align-self: flex-end;
+  height: 30px;
+}
+
+.disabledButton {
+  cursor: default;
+  width: auto;
+  outline: none;
+  border: 1px solid black;
+  border-radius: 2px;
+  font-size: 10px;
+  color: black;
+  background: #e0e0e0;
+}
+
+.okayButton {
+  cursor: pointer;
+  width: auto;
+  outline: none;
+  border: 1px solid #e0e0e0;
+  border-radius: 2px;
+  font-size: 10px;
+  color: white;
+  background: black;
+}
+
+.okayButton:hover {
+  background: white;
+  color: black;
+  border: 1px solid #e0e0e0;
+}
+
+.rectDetail {
+  display: flex;
+  font-size: 11px;
+  background: white;
+  padding: 2px;
+  align-items: center;
+}
+
+.id {
+  margin-right: 3px;
+}
+
+.id, .values {
+  display: inline-block;
+}
+
+.values {
+
+}
+
+.regionForm {
+  display: flex;
+  flex-direction: row;
+}
