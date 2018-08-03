@@ -116,7 +116,7 @@ class App extends Component {
 					<Selection
 						fileToShow={fileToShow}
 						updateRegions={this.updateRegions}
-						handleIndividualSubmit={this.handleIndividualSubmit}
+						// handleIndividualSubmit={this.handleIndividualSubmit}
 						currentFileRegions={currentFileRegions}
 					/>
 					<Data
