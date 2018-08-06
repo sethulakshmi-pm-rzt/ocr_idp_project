@@ -1,7 +1,7 @@
 /**
  * RegionComponent
  * Takes in an image, returns all the selected areas as a key value pair
- * @author Akshay, sethulakshmi
+ * @author Akshay, Sethulakshmi
  */
 
 import React, { Component } from 'react';

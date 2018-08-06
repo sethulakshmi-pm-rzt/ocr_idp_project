@@ -1,11 +1,25 @@
 /**
  * FileList
- * @author Akshay
+ * @author Akshay, Sethulakshmi
  */
 import React, { Component } from 'react';
 import './FileList.css';
 
 class FileList extends Component {
+	constructor(props){
+		super(props);
+		this.state = {
+			activeItem: 0,
+		}
+	}
+
+	toFindActiveImg = (index) => {
+    this.props.handleFileChange(index);
+    this.setState({
+      activeItem: index
+    })
+  };
+
 	render() {
 		const { fileList } = this.props;
 		return (
@@ -14,11 +28,9 @@ class FileList extends Component {
 					{fileList.length > 0 &&
 						fileList.map((file, index) => (
 							<span
-								className="fileListItem"
+								className={`fileListItem ${this.state.activeItem === index ? 'activeItem' : ''}`}
 								key={index}
-								onClick={() =>
-									this.props.handleFileChange(index)
-								}
+								onClick={() => {this.toFindActiveImg(index)}}
 							>
 								{index + 1}. {file.name}
 							</span>

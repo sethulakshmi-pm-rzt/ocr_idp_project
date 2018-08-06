@@ -8,9 +8,6 @@ import FileList from '../../container/FileList/FileList';
 
 class Data extends Component {
 	render() {
-
-		console.log("listItems - To Right: ", this.props.listItems)
-
 		const { listItems, fileObjects, handleFileChange } = this.props;
 		let uploadedFiles = fileObjects
 			? fileObjects.map(object => object.file)
