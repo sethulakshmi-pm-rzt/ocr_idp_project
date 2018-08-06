@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1d274358-a137-4ce1-a77d-2f8bb8a0ba75" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/src/components/Popup/Popup.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Popup/Popup.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Popup/Popup.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Popup/Popup.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/layout/Popup/Popup.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/layout/Popup/Popup.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -73,8 +71,8 @@
       <file leaf-file-name="Popup.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/components/Popup/Popup.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="286">
-              <caret line="47" column="29" selection-start-line="47" selection-start-column="29" selection-end-line="47" selection-end-column="29" />
+            <state relative-caret-position="424">
+              <caret line="55" column="89" selection-start-line="55" selection-start-column="89" selection-end-line="55" selection-end-column="89" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
                 <element signature="e#97#131#0" expanded="true" />
@@ -87,7 +85,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>handleSubmit</find>
       <find>buttonWra</find>
       <find>handleIndividualSubmit</find>
       <find>popup</find>
@@ -97,7 +94,6 @@
       <find>popupBody</find>
       <find>singleContent</find>
       <find>regionRenderer</find>
-      <find>activeValue</find>
       <find>POP</find>
       <find>&lt;POP</find>
       <find>edit</find>
@@ -117,6 +113,8 @@
       <find>itemDataWrapperActive</find>
       <find>contentHeaderWrapper</find>
       <find>img</find>
+      <find>&lt;img</find>
+      <find>activeValue</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -259,12 +257,12 @@
       <updated>1533107658703</updated>
       <workItem from="1533107660057" duration="16962000" />
       <workItem from="1533202256841" duration="21786000" />
-      <workItem from="1533531168702" duration="1801000" />
+      <workItem from="1533531168702" duration="2159000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="40549000" />
+    <option name="totallyTimeSpent" value="40907000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
@@ -682,8 +680,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/Popup/Popup.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="286">
-          <caret line="47" column="29" selection-start-line="47" selection-start-column="29" selection-end-line="47" selection-end-column="29" />
+        <state relative-caret-position="424">
+          <caret line="55" column="89" selection-start-line="55" selection-start-column="89" selection-end-line="55" selection-end-column="89" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
             <element signature="e#97#131#0" expanded="true" />

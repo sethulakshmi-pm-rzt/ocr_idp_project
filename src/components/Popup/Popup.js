@@ -15,16 +15,18 @@ class PopUp extends React.Component {
     super(props);
     this.state = {
       activeValue: '',
+      expanded: false,
     };
   }
 
-  toGetDetails = (index) => {
+  toGetDetails = (index, expanded) => {
     this.setState({
-      activeValue: index
+      activeValue: index,
+      expanded: !expanded,
     });
   };
 
-  popupBody = (data, activeValue) => (
+  popupBody = (data, activeValue, expanded) => (
     <div className={"popupDataBody"}>
       <h2 className={"popupDataBodyHead"}>
         {data.heading}
@@ -35,7 +37,7 @@ class PopUp extends React.Component {
           <div
             key={index}
             className={"singleContent"}
-            onClick={() => {this.toGetDetails(index)}}
+            onClick={() => {this.toGetDetails(index, expanded)}}
           >
             <div className={"contentHeaderWrapper"}>
               <h4 className={"contentHeader"}>
@@ -43,7 +45,7 @@ class PopUp extends React.Component {
               </h4>
 
               <img
-                className={`downIcon ${(activeValue === index) ? 'upIcon' : ''}`}
+                className={`downIcon ${((activeValue === index) && expanded) ? 'upIcon' : ''}`}
                 src={downIcon}
                 alt={downIcon}
               />
@@ -51,7 +53,7 @@ class PopUp extends React.Component {
             </div>
 
             <div
-              className={`itemDataWrapperInactive ${(activeValue === index) ? 'itemDataWrapperActive' : ''}`}
+              className={`itemDataWrapperInactive ${((activeValue === index) && expanded) ? 'itemDataWrapperActive' : ''}`}
             >
               <pre
                 className={"contentData"}
@@ -84,7 +86,7 @@ class PopUp extends React.Component {
           >
             &times;
           </a>
-          {this.popupBody(data, this.state.activeValue)}
+          {this.popupBody(data, this.state.activeValue, this.state.expanded)}
         </div>
       </Popup>
     )
