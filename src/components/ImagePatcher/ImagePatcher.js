@@ -3,6 +3,7 @@
  * Takes in an image, returns all the selected areas as a key value pair
  * @author Akshay, sethulakshmi
  */
+
 import React, { Component } from 'react';
 import ReactRegionSelect from 'react-region-select';
 import { instruction } from '../../Utils';
@@ -280,6 +281,15 @@ class RegionComponent extends Component {
               >
                 Save this Page
               </button>
+
+              <div>
+                <button className={"previousButton"}>
+                  previous
+                </button>
+                <button className={"nextButton"}>
+                  next
+                </button>
+              </div>
 
               {/* <button
                onClick={this.handleSubmit}
