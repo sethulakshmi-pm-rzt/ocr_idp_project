@@ -118,6 +118,8 @@ class App extends Component {
 						updateRegions={this.updateRegions}
 						// handleIndividualSubmit={this.handleIndividualSubmit}
 						currentFileRegions={currentFileRegions}
+						handleFileChange={this.handleFileChange}
+            fileObjects={fileObjects}
 					/>
 					<Data
 						listItems={currentFileDetail}

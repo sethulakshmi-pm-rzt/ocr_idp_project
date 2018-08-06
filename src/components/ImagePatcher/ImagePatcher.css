@@ -130,9 +130,20 @@
 }
 
 .previousButton {
-
+  transform: rotate(90deg);
+  width: 28px;
+  padding: 6px;
+  background: #e0e0e0;
+  border-radius: 10px;
+  cursor: pointer;
+  margin-right: 10px;
 }
 
 .nextButton {
-
+  transform: rotate(270deg);
+  width: 28px;
+  padding: 6px;
+  background: #e0e0e0;
+  border-radius: 10px;
+  cursor: pointer;
 }

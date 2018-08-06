@@ -10,6 +10,7 @@ import { instruction } from '../../Utils';
 import edit from './../../images/003-marker.svg';
 import deleteIcon from './../../images/004-delete.svg';
 import './ImagePatcher.css';
+import downArrow from './../../images/001-down-arrow.svg';
 
 class RegionComponent extends Component {
   constructor(props) {
@@ -20,6 +21,7 @@ class RegionComponent extends Component {
       regionCoordinates: [],
       editMode: true,
       editIndex: 0,
+      activeImg: 0,
     };
 
     this.regionRenderer = this.regionRenderer.bind(this);
@@ -248,9 +250,28 @@ class RegionComponent extends Component {
   }
 
   toSaveEachImg = (e) => {
-    e.stopPropagation()
+    e.stopPropagation();
     console.log("SAVE - EACH - IMG")
   };
+
+  toPreviousImg = () => {
+    if(this.state.activeImg > 0) {
+      this.props.handleFileChange(this.state.activeImg - 1);
+      this.setState({
+        activeImg: this.state.activeImg - 1,
+      })
+    }
+  };
+
+  toNextImg = () => {
+    if(this.state.activeImg < this.props.fileObjects.length - 1) {
+      this.props.handleFileChange(this.state.activeImg + 1);
+      this.setState({
+        activeImg: this.state.activeImg + 1,
+      })
+    }
+  };
+
 
   // handleSubmit() {
   // 	this.props.handleIndividualSubmit();
@@ -283,12 +304,19 @@ class RegionComponent extends Component {
               </button>
 
               <div>
-                <button className={"previousButton"}>
-                  previous
-                </button>
-                <button className={"nextButton"}>
-                  next
-                </button>
+                <img
+                  className={"previousButton"}
+                  alt={'previousArrow'}
+                  src={downArrow}
+                  onClick={() => {this.toPreviousImg()}}
+                />
+                <img
+                  className={"nextButton"}
+
+                  alt={'nextButton'}
+                  src={downArrow}
+                  onClick={() => {this.toNextImg()}}
+                />
               </div>
 
               {/* <button
