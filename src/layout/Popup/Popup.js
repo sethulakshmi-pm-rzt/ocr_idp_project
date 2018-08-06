@@ -81,7 +81,7 @@ const data = {
   popupData: [
     {
       dataHeading: 'DataHeading1',
-      data: JSON.stringify(dummy, null, '\t'),
+      data: dummy,
     },
     {
       dataHeading: 'DataHeading2',
