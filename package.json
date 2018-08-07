@@ -1,10 +1,12 @@
 {
   "name": "ocr",
   "version": "0.1.0",
-  "proxy": "http://localhost:3001",
+  "proxy": "http://192.168.46.27:8090",
   "private": true,
   "dependencies": {
     "axios": "^0.18.0",
+    "d3": "^5.0.0",
+    "d3-zoom": "^1.7.1",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
     "react-dropzone": "^4.2.13",

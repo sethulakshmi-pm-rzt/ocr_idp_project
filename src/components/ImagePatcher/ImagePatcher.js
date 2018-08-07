@@ -11,6 +11,122 @@ import edit from './../../images/003-marker.svg';
 import deleteIcon from './../../images/004-delete.svg';
 import './ImagePatcher.css';
 import downArrow from './../../images/001-down-arrow.svg';
+// import * as d3 from 'd3';
+
+class FormComp extends React.Component{
+  constructor(props) {
+    super(props)
+
+  }
+
+
+  render() {
+
+    const { regionProps, regions, editMode, editIndex } = this.props;
+
+    if (regions.length - 1 === regionProps.index) {
+      return (
+        <div className="region">
+          {(editMode && editIndex === regionProps.index)
+            ?
+            <form
+              className={'regionForm'}
+              onSubmit={event => this.onFormSubmit(event, regionProps.index)}
+            >
+              <input
+                type="text"
+                ref={node => (this.input = node)}
+              />
+
+              <button
+                type="submit"
+                className="okayButton"
+              >
+                OK
+              </button>
+            </form>
+            : <div className={'rectDetail'}>
+              <span className={'id'}>{regionProps.index + 1}. </span>
+              {regions[regionProps.index].data.value &&
+              <span className={'values'}>{regions[regionProps.index].data.value}</span>}
+              <span
+                className={'editIcon'}
+                onClick={(e) => {this.onEdit(e, regionProps.index)}}
+              >
+                  <img
+                    src={edit}
+                    className={'editIconStyle'}
+                  />
+                  </span>
+
+              <span
+                className={'deleteIcon'}
+                onClick={(e) => {this.onDelete(e, regionProps.index)}}
+              >
+                  <img
+                    src={deleteIcon}
+                    className={'deleteIconStyle'}
+                  />
+                </span>
+
+            </div>
+          }
+        </div>
+      );
+    } else {
+      return (
+        <div className={'region'}>
+          {(editMode && editIndex === regionProps.index)
+            ?
+            <form
+              className={'regionForm'}
+              onSubmit={event => this.onFormSubmit(event, regionProps.index)}
+            >
+              <input
+                type="text"
+                ref={node => (this.input = node)}
+              />
+
+              <button
+                type="submit"
+                className="okayButton"
+              >
+                OK
+              </button>
+            </form>
+            :
+            <div className={'rectDetail'}>
+              <span className={'id'}>{regionProps.index + 1}. </span>
+              {regions[regionProps.index].data.value &&
+              <span className={'values'}>{regions[regionProps.index].data.value}</span>}
+              <span
+                className={'editIcon'}
+                onClick={(e) => {this.onEdit(e, regionProps.index)}}
+              >
+                  <img
+                    src={edit}
+                    className={'editIconStyle'}
+                  />
+                </span>
+              <span
+                className={'deleteIcon'}
+                onClick={(e) => {this.onDelete(e, regionProps.index)}}
+              >
+                  <img
+                    src={deleteIcon}
+                    className={'deleteIconStyle'}
+                  />
+                </span>
+            </div>
+
+          }
+        </div>
+
+      );
+    }
+  }
+
+}
 
 class RegionComponent extends Component {
   constructor(props) {
@@ -103,108 +219,13 @@ class RegionComponent extends Component {
    * @param regionProps
    */
   regionRenderer(regionProps) {
-
     if (!regionProps.isChanging) {
-      if (this.state.regions.length - 1 === regionProps.index) {
-        return (
-          <div className="region">
-            {(this.state.editMode && this.state.editIndex === regionProps.index)
-              ?
-              <form
-                className={'regionForm'}
-                onSubmit={event => this.onFormSubmit(event, regionProps.index)}
-              >
-                <input
-                  type="text"
-                  ref={node => (this.input = node)}
-                />
-
-                <button
-                  type="submit"
-                  className="okayButton"
-                >
-                  OK
-                </button>
-              </form>
-              : <div className={'rectDetail'}>
-                <span className={'id'}>{regionProps.index + 1}. </span>
-                {this.state.regions[regionProps.index].data.value &&
-                <span className={'values'}>{this.state.regions[regionProps.index].data.value}</span>}
-                <span
-                  className={'editIcon'}
-                  onClick={(e) => {this.onEdit(e, regionProps.index)}}
-                >
-                  <img
-                    src={edit}
-                    className={'editIconStyle'}
-                  />
-                  </span>
-
-                <span
-                  className={'deleteIcon'}
-                  onClick={(e) => {this.onDelete(e, regionProps.index)}}
-                >
-                  <img
-                    src={deleteIcon}
-                    className={'deleteIconStyle'}
-                  />
-                </span>
-
-              </div>
-            }
-          </div>
-        );
-      } else {
-        return (
-          <div className={'region'}>
-            {(this.state.editMode && this.state.editIndex === regionProps.index)
-              ?
-              <form
-                className={'regionForm'}
-                onSubmit={event => this.onFormSubmit(event, regionProps.index)}
-              >
-                <input
-                  type="text"
-                  ref={node => (this.input = node)}
-                />
-
-                <button
-                  type="submit"
-                  className="okayButton"
-                >
-                  OK
-                </button>
-              </form>
-              :
-              <div className={'rectDetail'}>
-                <span className={'id'}>{regionProps.index + 1}. </span>
-                {this.state.regions[regionProps.index].data.value &&
-                <span className={'values'}>{this.state.regions[regionProps.index].data.value}</span>}
-                <span
-                  className={'editIcon'}
-                  onClick={(e) => {this.onEdit(e, regionProps.index)}}
-                >
-                  <img
-                    src={edit}
-                    className={'editIconStyle'}
-                  />
-                </span>
-                <span
-                  className={'deleteIcon'}
-                  onClick={(e) => {this.onDelete(e, regionProps.index)}}
-                >
-                  <img
-                    src={deleteIcon}
-                    className={'deleteIconStyle'}
-                  />
-                </span>
-              </div>
-
-            }
-          </div>
-
-        );
-      }
+      (<FormComp
+        regionProps={regionProps}
+        regions={this.state.regions}
+        editMode={this.state.editMode}
+        editIndex={this.state.editIndex}
+      />)
     }
   }
 
@@ -272,6 +293,19 @@ class RegionComponent extends Component {
     }
   };
 
+  // imageZooming = () => {
+  //
+  //   function zoomed() {
+  //     context.translate(d3.event.transform.x, d3.event.transform.y);
+  //     context.scale(d3.event.transform.k, d3.event.transform.k);
+  //   }
+  //
+  //   let canvas = d3.select(this.imgRef);
+  //   let context = canvas.node().getContext("2d");
+  //
+  //   var zoom = d3.zoom()
+  //     .on("zoom", zoomed);
+  // };
 
   // handleSubmit() {
   // 	this.props.handleIndividualSubmit();
@@ -312,11 +346,15 @@ class RegionComponent extends Component {
                 />
                 <img
                   className={"nextButton"}
-
                   alt={'nextButton'}
                   src={downArrow}
                   onClick={() => {this.toNextImg()}}
                 />
+                {/*<img*/}
+                  {/*src={downArrow}*/}
+                  {/*alt={'zoom'}*/}
+                  {/*onClick={() => {this.imageZooming()}}*/}
+                {/*/>*/}
               </div>
 
               {/* <button
@@ -336,7 +374,10 @@ class RegionComponent extends Component {
                 src={fileToShow.file.preview}
                 width={500}
                 className="image"
-                alt=""
+                alt="image"
+                ref={node => {
+                  this.imgRef = node;
+                }}
               />
             </ReactRegionSelect>
           </div>

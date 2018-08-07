@@ -2,13 +2,15 @@
  * App
  * @author Akshay
  */
+
 import React, { Component } from 'react';
 import Header from './layout/Header/Header';
 import Upload from './layout/Upload/Upload';
 import Selection from './layout/Selection/Selection';
+import { commonAction } from './common/actions';
 import Data from './layout/Data/Data';
-
 import './App.css';
+import { connect } from 'react-redux';
 
 class App extends Component {
 	constructor(props) {
@@ -33,21 +35,27 @@ class App extends Component {
 	 * @param uploadedFiles
 	 */
 	handleFilesUpload(uploadedFiles) {
-		let fileObjects = uploadedFiles.map((file, index) => ({
-			file,
-			fileName: file.name,
-			fileNumber: index,
-			details: [],
-			regions: []
-		}));
-		this.setState({
-			fileObjects,
-			fileToShow: fileObjects[0],
-			currentFile: 0,
-			currentFileDetail: fileObjects[0].details,
-			currentFileRegions: fileObjects[0].regions
-		});
-	}
+    let fileObjects = uploadedFiles.map((file, index) => ({
+      file,
+      fileName: file.name,
+      fileNumber: index,
+      details: [],
+      regions: []
+    }));
+
+    let formData = new FormData();
+    formData.append('files', uploadedFiles);
+
+    this.props.commonAction('UPLOAD', 'FILE', 'post', 'file/uploadFile', formData);
+
+    this.setState({
+      fileObjects,
+      fileToShow: fileObjects[0],
+      currentFile: 0,
+      currentFileDetail: fileObjects[0].details,
+      currentFileRegions: fileObjects[0].regions
+    });
+  }
 
 	/**
 	 * update the regions for corresponding file
@@ -66,6 +74,11 @@ class App extends Component {
 			},
 			...this.state.fileObjects.slice(index + 1)
 		];
+
+		console.log("aaa", fileObjects);
+
+    this.props.commonAction('UPDATE', 'REGION', 'put', 'file/saveTemplate', );
+
 		this.setState({
 			fileObjects,
 			currentFileDetail: details,
@@ -132,4 +145,4 @@ class App extends Component {
 	}
 }
 
-export default App;
+export default connect(null, { commonAction })(App);

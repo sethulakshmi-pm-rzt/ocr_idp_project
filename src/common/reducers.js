@@ -32,6 +32,9 @@ export function fetchWithNamedType(name = "") {
 			case `UPLOAD_${name}`:
 			case `UPLOAD_${name}_SUCCESS`:
 			case `UPLOAD_${name}_ERROR`:
+      case `UPDATE_${name}`:
+      case `UPDATE_${name}_SUCCESS`:
+      case `UPDATE_${name}_ERROR`:
 				return { ...state, ...action.payload };
 			case `CLEAR_${name}`:
 				return initialState;
