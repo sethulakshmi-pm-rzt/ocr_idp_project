@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1d274358-a137-4ce1-a77d-2f8bb8a0ba75" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/ImagePatcher/ImagePatcher.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ImagePatcher/ImagePatcher.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -53,19 +52,11 @@
       <file leaf-file-name="ImagePatcher.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/components/ImagePatcher/ImagePatcher.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="514">
-              <caret line="69" column="10" selection-start-line="69" selection-start-column="10" selection-end-line="69" selection-end-column="10" />
+            <state relative-caret-position="146">
+              <caret line="127" column="14" lean-forward="true" selection-start-line="127" selection-start-column="14" selection-end-line="127" selection-end-column="14" />
               <folding>
+                <element signature="n#!!doc" expanded="true" />
                 <element signature="e#133#174#0" expanded="true" />
-                <element signature="e#2111#2226#0" />
-                <element signature="e#2267#2492#0" />
-                <element signature="e#6808#6875#0" />
-                <element signature="e#6902#7085#0" />
-                <element signature="e#7108#7323#0" />
-                <element signature="n#!!block;n#handleChange#0;n#RegionComponent#0" />
-                <element signature="n#!!block;n#changeRegionData#0;n#RegionComponent#0" />
-                <element signature="n#!!block;n#handleUndo#0;n#RegionComponent#0" />
-                <element signature="n#!!block;n#calculateCoordinates#0;n#RegionComponent#0" />
               </folding>
             </state>
           </provider>
@@ -331,7 +322,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="65226000" />
+    <option name="totallyTimeSpent" value="65974000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
@@ -838,19 +829,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/ImagePatcher/ImagePatcher.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="514">
-          <caret line="69" column="10" selection-start-line="69" selection-start-column="10" selection-end-line="69" selection-end-column="10" />
+        <state relative-caret-position="146">
+          <caret line="127" column="14" lean-forward="true" selection-start-line="127" selection-start-column="14" selection-end-line="127" selection-end-column="14" />
           <folding>
+            <element signature="n#!!doc" expanded="true" />
             <element signature="e#133#174#0" expanded="true" />
-            <element signature="e#2111#2226#0" />
-            <element signature="e#2267#2492#0" />
-            <element signature="e#6808#6875#0" />
-            <element signature="e#6902#7085#0" />
-            <element signature="e#7108#7323#0" />
-            <element signature="n#!!block;n#handleChange#0;n#RegionComponent#0" />
-            <element signature="n#!!block;n#changeRegionData#0;n#RegionComponent#0" />
-            <element signature="n#!!block;n#handleUndo#0;n#RegionComponent#0" />
-            <element signature="n#!!block;n#calculateCoordinates#0;n#RegionComponent#0" />
           </folding>
         </state>
       </provider>
