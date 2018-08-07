@@ -14,12 +14,66 @@ import './ImagePatcher.css';
 
 // import * as d3 from 'd3';
 
+class LabelRegion extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      dropDownData: '',
+    };
+  }
+
+  render() {
+    const { onFormSubmit, regionProps } = this.props;
+    return (
+      <div className={'regionWrapper'}>
+        <select
+          required
+          defaultValue={'others'}
+          onChange={(e) => {
+            console.log('EEE', e.target.value);
+            this.setState({
+              dropDownData: e.target.value,
+            });
+          }}
+        >
+          <option value="others">others</option>
+          <option value="constant">constant</option>
+          <option value="headers">headers</option>
+          <option value="data">data</option>
+        </select>
+
+        {this.state.dropDownData &&
+        <div
+          className={'regionForm'}
+          // onSubmit={event => this.onFormSubmit(event, regionProps.index)}
+        >
+          <input
+            type="text"
+            ref={node => (this.input = node)}
+          />
+
+          <button
+            className="okayButton"
+            onClick={(event) => {
+              event.preventDefault();
+              onFormSubmit(event, regionProps.index, this.input.value)
+              console.log("SAVEDDD", this.state.dropDownData)
+            }}
+          >
+            OK
+          </button>
+        </div>}
+      </div>
+    );
+  }
+}
+
 class RegionComponent extends Component {
-  onFormSubmit = (event, regionPropsIndex) => {
+  onFormSubmit = (event, regionPropsIndex, value) => {
     event.preventDefault();
     this.changeRegionData(
       regionPropsIndex,
-      this.input.value,
+      value,
     );
     this.setState({
       editMode: true,
@@ -67,6 +121,7 @@ class RegionComponent extends Component {
       });
     }
   };
+
   /**
    * Save the final regions
    * @param regions
@@ -76,6 +131,7 @@ class RegionComponent extends Component {
       regions: regions,
     });
   };
+
   /**
    * Show the input field for the selected area
    * @param regionProps
@@ -87,22 +143,12 @@ class RegionComponent extends Component {
         <div className="region">
           {(this.state.editMode && this.state.editIndex === regionProps.index)
             ?
-            <form
-              className={'regionForm'}
-              onSubmit={event => this.onFormSubmit(event, regionProps.index)}
-            >
-              <input
-                type="text"
-                ref={node => (this.input = node)}
+            <div>
+              <LabelRegion
+                onFormSubmit={this.onFormSubmit}
+                regionProps={regionProps}
               />
-
-              <button
-                type="submit"
-                className="okayButton"
-              >
-                OK
-              </button>
-            </form>
+            </div>
             :
             <div className={'rectDetail'}>
               <span className={'id'}>{regionProps.index + 1}. </span>

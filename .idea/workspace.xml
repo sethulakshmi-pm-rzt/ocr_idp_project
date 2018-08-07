@@ -2,6 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1d274358-a137-4ce1-a77d-2f8bb8a0ba75" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ImagePatcher/ImagePatcher.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ImagePatcher/ImagePatcher.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/ImagePatcher/ImagePatcher.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ImagePatcher/ImagePatcher.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -20,7 +24,7 @@
         <entry file="file://$PROJECT_DIR$/src/App.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="185">
-              <caret line="49" lean-forward="true" selection-start-line="49" selection-end-line="49" />
+              <caret line="49" selection-start-line="49" selection-end-line="49" />
               <folding>
                 <element signature="e#33#74#0" expanded="true" />
               </folding>
@@ -31,8 +35,8 @@
       <file leaf-file-name="Utils.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Utils.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="630">
-              <caret line="42" column="2" selection-start-line="42" selection-start-column="2" selection-end-line="42" selection-end-column="2" />
+            <state relative-caret-position="525">
+              <caret line="35" column="6" selection-start-line="35" selection-start-column="2" selection-end-line="35" selection-end-column="6" />
             </state>
           </provider>
         </entry>
@@ -41,7 +45,7 @@
         <entry file="file://$PROJECT_DIR$/src/layout/Selection/Selection.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="120">
-              <caret line="11" column="13" lean-forward="true" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+              <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
               <folding>
                 <element signature="e#60#101#0" expanded="true" />
               </folding>
@@ -49,14 +53,29 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="ImagePatcher.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/components/ImagePatcher/ImagePatcher.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="560">
+              <caret line="138" column="20" selection-start-line="138" selection-start-column="20" selection-end-line="138" selection-end-column="20" />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="ImagePatcher.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/components/ImagePatcher/ImagePatcher.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="665">
-              <caret line="104" column="19" lean-forward="true" selection-start-line="89" selection-start-column="12" selection-end-line="104" selection-end-column="19" />
+            <state relative-caret-position="511">
+              <caret line="76" column="6" selection-start-line="76" selection-start-column="6" selection-end-line="76" selection-end-column="6" />
               <folding>
-                <element signature="n#!!doc" expanded="true" />
                 <element signature="e#133#174#0" expanded="true" />
+                <element signature="e#2114#2229#0" />
+                <element signature="e#2270#2495#0" />
+                <element signature="e#5127#5194#0" />
+                <element signature="e#5221#5404#0" />
+                <element signature="e#5427#5642#0" />
+                <element signature="n#!!doc;n#handleChange#0;n#RegionComponent#0" />
+                <element signature="e#2583#2640#0" />
               </folding>
             </state>
           </provider>
@@ -66,7 +85,7 @@
         <entry file="file://$PROJECT_DIR$/src/common/watcherSaga.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="120">
-              <caret line="11" column="41" lean-forward="true" selection-start-line="11" selection-start-column="41" selection-end-line="11" selection-end-column="41" />
+              <caret line="11" column="41" selection-start-line="11" selection-start-column="41" selection-end-line="11" selection-end-column="41" />
               <folding>
                 <element signature="e#71#119#0" expanded="true" />
               </folding>
@@ -103,7 +122,7 @@
         <entry file="file://$PROJECT_DIR$/src/common/reducers.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="540">
-              <caret line="36" column="34" lean-forward="true" selection-start-line="36" selection-start-column="34" selection-end-line="36" selection-end-column="34" />
+              <caret line="36" column="34" selection-start-line="36" selection-start-column="34" selection-end-line="36" selection-end-column="34" />
             </state>
           </provider>
         </entry>
@@ -121,9 +140,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>next</find>
-      <find>fileList</find>
-      <find>listitems</find>
       <find>handleFileChange</find>
       <find>toNextImg</find>
       <find>activeImg</find>
@@ -145,12 +161,15 @@
       <find>this.state.regions</find>
       <find>editMode</find>
       <find>editIndex</find>
-      <find>onFormSubmit</find>
       <find>regionComp</find>
       <find>FormComp</find>
       <find>regions</find>
       <find>regionRenderer</find>
       <find>handleChange</find>
+      <find>regionWrapper</find>
+      <find>preventDefault</find>
+      <find>LabelRegion</find>
+      <find>onFormSubmit</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -175,7 +194,6 @@
         <option value="$PROJECT_DIR$/src/components/Popup/Popup.css" />
         <option value="$PROJECT_DIR$/src/layout/Popup/Popup.js" />
         <option value="$PROJECT_DIR$/src/components/Popup/Popup.js" />
-        <option value="$PROJECT_DIR$/src/components/ImagePatcher/ImagePatcher.css" />
         <option value="$PROJECT_DIR$/src/layout/Selection/Selection.js" />
         <option value="$PROJECT_DIR$/src/layout/Data/Data.js" />
         <option value="$PROJECT_DIR$/src/container/FileList/FileList.js" />
@@ -189,6 +207,7 @@
         <option value="$PROJECT_DIR$/public/manifest.json" />
         <option value="$PROJECT_DIR$/src/Utils.js" />
         <option value="$PROJECT_DIR$/src/App.js" />
+        <option value="$PROJECT_DIR$/src/components/ImagePatcher/ImagePatcher.css" />
         <option value="$PROJECT_DIR$/src/components/ImagePatcher/ImagePatcher.js" />
       </list>
     </option>
@@ -322,7 +341,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="66820000" />
+    <option name="totallyTimeSpent" value="69909000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
@@ -580,13 +599,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/ImagePatcher/ImagePatcher.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="527">
-          <caret line="138" column="20" selection-start-line="138" selection-start-column="20" selection-end-line="138" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/layout/Data/Data.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
@@ -747,7 +759,7 @@
     <entry file="file://$PROJECT_DIR$/src/common/watcherSaga.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
-          <caret line="11" column="41" lean-forward="true" selection-start-line="11" selection-start-column="41" selection-end-line="11" selection-end-column="41" />
+          <caret line="11" column="41" selection-start-line="11" selection-start-column="41" selection-end-line="11" selection-end-column="41" />
           <folding>
             <element signature="e#71#119#0" expanded="true" />
           </folding>
@@ -762,13 +774,6 @@
             <element signature="n#!!doc" expanded="true" />
             <element signature="e#57#98#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Utils.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="630">
-          <caret line="42" column="2" selection-start-line="42" selection-start-column="2" selection-end-line="42" selection-end-column="2" />
         </state>
       </provider>
     </entry>
@@ -796,7 +801,7 @@
     <entry file="file://$PROJECT_DIR$/src/common/reducers.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="540">
-          <caret line="36" column="34" lean-forward="true" selection-start-line="36" selection-start-column="34" selection-end-line="36" selection-end-column="34" />
+          <caret line="36" column="34" selection-start-line="36" selection-start-column="34" selection-end-line="36" selection-end-column="34" />
         </state>
       </provider>
     </entry>
@@ -810,7 +815,7 @@
     <entry file="file://$PROJECT_DIR$/src/layout/Selection/Selection.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
-          <caret line="11" column="13" lean-forward="true" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+          <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
           <folding>
             <element signature="e#60#101#0" expanded="true" />
           </folding>
@@ -820,20 +825,40 @@
     <entry file="file://$PROJECT_DIR$/src/App.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="185">
-          <caret line="49" lean-forward="true" selection-start-line="49" selection-end-line="49" />
+          <caret line="49" selection-start-line="49" selection-end-line="49" />
           <folding>
             <element signature="e#33#74#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/ImagePatcher/ImagePatcher.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="560">
+          <caret line="138" column="20" selection-start-line="138" selection-start-column="20" selection-end-line="138" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Utils.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="525">
+          <caret line="35" column="6" selection-start-line="35" selection-start-column="2" selection-end-line="35" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/ImagePatcher/ImagePatcher.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="665">
-          <caret line="104" column="19" lean-forward="true" selection-start-line="89" selection-start-column="12" selection-end-line="104" selection-end-column="19" />
+        <state relative-caret-position="511">
+          <caret line="76" column="6" selection-start-line="76" selection-start-column="6" selection-end-line="76" selection-end-column="6" />
           <folding>
-            <element signature="n#!!doc" expanded="true" />
             <element signature="e#133#174#0" expanded="true" />
+            <element signature="e#2114#2229#0" />
+            <element signature="e#2270#2495#0" />
+            <element signature="e#5127#5194#0" />
+            <element signature="e#5221#5404#0" />
+            <element signature="e#5427#5642#0" />
+            <element signature="n#!!doc;n#handleChange#0;n#RegionComponent#0" />
+            <element signature="e#2583#2640#0" />
           </folding>
         </state>
       </provider>
