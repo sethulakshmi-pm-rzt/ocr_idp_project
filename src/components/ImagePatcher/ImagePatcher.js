@@ -26,6 +26,7 @@ class RegionComponent extends Component {
       editIndex: regionPropsIndex + 1,
     });
   };
+
   onEdit = (e, regionPropsIndex) => {
     e.stopPropagation();
     this.setState({
@@ -33,6 +34,7 @@ class RegionComponent extends Component {
       editIndex: regionPropsIndex,
     });
   };
+
   onDelete = (e, regionPropsIndex) => {
     e.stopPropagation();
     let updatedRegion = this.state.regions;
@@ -42,10 +44,12 @@ class RegionComponent extends Component {
       regions: updatedRegion,
     });
   };
+
   toSaveEachImg = (e) => {
     e.stopPropagation();
     console.log('SAVE - EACH - IMG');
   };
+
   toPreviousImg = () => {
     if (this.state.activeImg > 0) {
       this.props.handleFileChange(this.state.activeImg - 1);
@@ -54,6 +58,7 @@ class RegionComponent extends Component {
       });
     }
   };
+
   toNextImg = () => {
     if (this.state.activeImg < this.props.fileObjects.length - 1) {
       this.props.handleFileChange(this.state.activeImg + 1);
@@ -62,67 +67,20 @@ class RegionComponent extends Component {
       });
     }
   };
-
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      regions: this.props.currentFileRegions,
-      regionCoordinates: [],
-      editMode: true,
-      editIndex: 0,
-      activeImg: 0,
-    };
-
-    this.regionRenderer = this.regionRenderer.bind(this);
-    this.handleChange = this.handleChange.bind(this);
-    this.handleUndo = this.handleUndo.bind(this);
-    this.calculateCoordinates = this.calculateCoordinates.bind(this);
-    // this.handleSubmit = this.handleSubmit.bind(this);
-  }
-
-  componentWillReceiveProps(nextProps) {
-    if (this.props.currentFileRegions !== nextProps.currentFileRegions) {
-      this.setState({
-        regions: nextProps.currentFileRegions,
-        regionCoordinates: [],
-      });
-    }
-  }
-
   /**
    * Save the final regions
    * @param regions
    */
-  handleChange(regions) {
+  handleChange = (regions) => {
     this.setState({
       regions: regions,
     });
-  }
-
-  /**
-   * Get the value of corresponding selected area
-   * @param index
-   * @param value
-   */
-  changeRegionData(index, value) {
-    const region = this.state.regions[index];
-    region.data.value = value;
-    this.calculateCoordinates([
-      ...this.state.regions.slice(0, index),
-      {
-        ...region,
-        data: region.data,
-      },
-      ...this.state.regions.slice(index + 1),
-    ]);
-  }
-
+  };
   /**
    * Show the input field for the selected area
    * @param regionProps
    */
-  regionRenderer(regionProps) {
+  regionRenderer = (regionProps) => {
 
     if (!regionProps.isChanging) {
       return (
@@ -145,10 +103,14 @@ class RegionComponent extends Component {
                 OK
               </button>
             </form>
-            : <div className={'rectDetail'}>
+            :
+            <div className={'rectDetail'}>
               <span className={'id'}>{regionProps.index + 1}. </span>
               {this.state.regions[regionProps.index].data.value &&
-              <span className={'values'}>{this.state.regions[regionProps.index].data.value}</span>}
+              <span className={'values'}>
+                {this.state.regions[regionProps.index].data.value}
+              </span>}
+
               <span
                 className={'editIcon'}
                 onClick={(e) => {this.onEdit(e, regionProps.index);}}
@@ -163,17 +125,61 @@ class RegionComponent extends Component {
                 className={'deleteIcon'}
                 onClick={(e) => {this.onDelete(e, regionProps.index);}}
               >
-                  <img
-                    src={deleteIcon}
-                    className={'deleteIconStyle'}
-                  />
+                <img
+                  src={deleteIcon}
+                  className={'deleteIconStyle'}
+                />
                 </span>
-
             </div>
           }
         </div>
       );
     }
+  };
+
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      regions: this.props.currentFileRegions,
+      regionCoordinates: [],
+      editMode: true,
+      editIndex: 0,
+      activeImg: 0,
+    };
+
+    // this.regionRenderer = this.regionRenderer.bind(this);
+    // this.handleChange = this.handleChange.bind(this);
+    this.handleUndo = this.handleUndo.bind(this);
+    this.calculateCoordinates = this.calculateCoordinates.bind(this);
+    // this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (this.props.currentFileRegions !== nextProps.currentFileRegions) {
+      this.setState({
+        regions: nextProps.currentFileRegions,
+        regionCoordinates: [],
+      });
+    }
+  }
+
+  /**
+   * Get the value of corresponding selected area
+   * @param index
+   * @param value
+   */
+  changeRegionData(index, value) {
+    const region = this.state.regions[index];
+    region.data.value = value;
+    this.calculateCoordinates([
+      ...this.state.regions.slice(0, index),
+      {
+        ...region,
+        data: region.data,
+      },
+      ...this.state.regions.slice(index + 1),
+    ]);
   }
 
   /**

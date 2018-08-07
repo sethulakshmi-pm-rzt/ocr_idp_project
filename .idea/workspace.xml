@@ -52,8 +52,8 @@
       <file leaf-file-name="ImagePatcher.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/components/ImagePatcher/ImagePatcher.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="146">
-              <caret line="127" column="14" lean-forward="true" selection-start-line="127" selection-start-column="14" selection-end-line="127" selection-end-column="14" />
+            <state relative-caret-position="665">
+              <caret line="104" column="19" lean-forward="true" selection-start-line="89" selection-start-column="12" selection-end-line="104" selection-end-column="19" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
                 <element signature="e#133#174#0" expanded="true" />
@@ -142,8 +142,6 @@
       <find>this.state.editMode</find>
       <find>this.state.editIndex</find>
       <find>conso</find>
-      <find>regionRenderer</find>
-      <find>handleChange</find>
       <find>this.state.regions</find>
       <find>editMode</find>
       <find>editIndex</find>
@@ -151,6 +149,8 @@
       <find>regionComp</find>
       <find>FormComp</find>
       <find>regions</find>
+      <find>regionRenderer</find>
+      <find>handleChange</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -322,7 +322,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="65974000" />
+    <option name="totallyTimeSpent" value="66820000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
@@ -829,8 +829,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/ImagePatcher/ImagePatcher.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="146">
-          <caret line="127" column="14" lean-forward="true" selection-start-line="127" selection-start-column="14" selection-end-line="127" selection-end-column="14" />
+        <state relative-caret-position="665">
+          <caret line="104" column="19" lean-forward="true" selection-start-line="89" selection-start-column="12" selection-end-line="104" selection-end-column="19" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
             <element signature="e#133#174#0" expanded="true" />
