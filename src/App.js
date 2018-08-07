@@ -46,7 +46,7 @@ class App extends Component {
     let formData = new FormData();
     formData.append('files', uploadedFiles);
 
-    this.props.commonAction('UPLOAD', 'FILE', 'post', 'file/uploadFile', formData);
+    // this.props.commonAction('UPLOAD', 'FILE', 'post', 'file/uploadFile', formData);
 
     this.setState({
       fileObjects,
@@ -75,9 +75,9 @@ class App extends Component {
 			...this.state.fileObjects.slice(index + 1)
 		];
 
-		console.log("aaa", fileObjects);
+		// console.log("aaa", fileObjects);
 
-    this.props.commonAction('UPDATE', 'REGION', 'put', 'file/saveTemplate', );
+    // this.props.commonAction('UPDATE', 'REGION', 'put', 'file/saveTemplate');
 
 		this.setState({
 			fileObjects,
