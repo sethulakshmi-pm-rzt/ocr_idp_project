@@ -27,7 +27,6 @@ class App extends Component {
 		this.handleFilesUpload = this.handleFilesUpload.bind(this);
 		this.updateRegions = this.updateRegions.bind(this);
 		this.handleFileChange = this.handleFileChange.bind(this);
-		// this.handleIndividualSubmit = this.handleIndividualSubmit.bind(this);
 	}
 
 	/**
@@ -75,9 +74,9 @@ class App extends Component {
 			...this.state.fileObjects.slice(index + 1)
 		];
 
-		// console.log("aaa", fileObjects);
+		console.log("update", this.state.fileObjects);
 
-    // this.props.commonAction('UPDATE', 'REGION', 'put', 'file/saveTemplate');
+    this.props.commonAction('UPDATE', 'REGION', 'put', 'file/saveTemplate', this.state.fileObjects);
 
 		this.setState({
 			fileObjects,
@@ -85,6 +84,11 @@ class App extends Component {
 			currentFileRegions: regions
 		});
 	}
+
+	handleSingleUpload = (coordinates, fileIndex) => {
+	  // console.log(coordinates ,fileIndex);
+    this.props.commonAction('UPDATE', 'REGION', 'put', 'file/saveTemplate', coordinates);
+  };
 
 	/**
 	 * change the current working file
@@ -99,19 +103,6 @@ class App extends Component {
 			currentFileRegions: selectedFileObject.regions
 		});
 	}
-
-	// handleIndividualSubmit() {
-	// 	const { uploadedFiles, currentFile } = this.state;
-	// 	if (
-	// 		uploadedFiles.length > 1 &&
-	// 		currentFile !== uploadedFiles.length - 1
-	// 	) {
-	// 		this.setState({
-	// 			fileToShow: uploadedFiles[currentFile + 1],
-	// 			currentFile: currentFile + 1
-	// 		});
-	// 	}
-	// }
 
 	render() {
 		const {
@@ -129,10 +120,10 @@ class App extends Component {
 					<Selection
 						fileToShow={fileToShow}
 						updateRegions={this.updateRegions}
-						// handleIndividualSubmit={this.handleIndividualSubmit}
 						currentFileRegions={currentFileRegions}
 						handleFileChange={this.handleFileChange}
             fileObjects={fileObjects}
+            handleSingleUpload={this.handleSingleUpload}
 					/>
 					<Data
 						listItems={currentFileDetail}

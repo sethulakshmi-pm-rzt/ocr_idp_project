@@ -17,12 +17,25 @@ class LabelRegion extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      dropDownData: '',
+      dropDownData: 'others',
     };
   }
 
   render() {
     const { onFormSubmit, regionProps } = this.props;
+
+    let placeholderData = '';
+
+    if (this.state.dropDownData === 'others') {
+      placeholderData = 'Values'
+    } else if (this.state.dropDownData === 'data') {
+      placeholderData = 'Line count'
+    }
+    else {
+      placeholderData = 'Header Data'
+
+    }
+
     return (
       <div className={'regionWrapper'}>
         <select
@@ -40,33 +53,37 @@ class LabelRegion extends Component {
           <option value="data">data</option>
         </select>
 
-        {this.state.dropDownData &&
         <div
           className={'regionForm'}
         >
+          {(this.state.dropDownData !== 'constant') &&
           <input
-            type="text"
-            placeholder={this.state.dropDownData}
+            type={this.state.dropDownData !== 'data' ? 'text' : 'number'}
+            placeholder={placeholderData}
             ref={node => (this.input = node)}
-          />
+          />}
 
           <button
             className="okayButton"
             onClick={(event) => {
               event.preventDefault();
-              onFormSubmit(event, regionProps.index, this.input.value, this.state.dropDownData)
+              (this.state.dropDownData !== 'constant')
+                ? onFormSubmit(event, regionProps.index, this.state.dropDownData, this.input.value)
+                : onFormSubmit(event, regionProps.index, this.state.dropDownData);
+
             }}
           >
             OK
           </button>
-        </div>}
+        </div>
+
       </div>
     );
   }
 }
 
 class RegionComponent extends Component {
-  onFormSubmit = (event, regionPropsIndex, value, category) => {
+  onFormSubmit = (event, regionPropsIndex, category, value = 0) => {
     event.preventDefault();
     this.changeRegionData(
       regionPropsIndex,
@@ -96,11 +113,6 @@ class RegionComponent extends Component {
     this.setState({
       regions: updatedRegion,
     });
-  };
-
-  toSaveEachImg = (e) => {
-    e.stopPropagation();
-    console.log('SAVE - EACH - IMG');
   };
 
   toPreviousImg = () => {
@@ -221,8 +233,7 @@ class RegionComponent extends Component {
       },
       ...this.state.regions.slice(index + 1)
     ]);
-  }
-
+  };
   /**
    * Undo the last selected area
    */
@@ -238,11 +249,10 @@ class RegionComponent extends Component {
    * Calculate the coordinates of all the selected areas
    * Also send the regions with values
    */
-  calculateCoordinates = (regions) => {
-    let regionCoordinates = {};
-
+  calculateCoordinates = (regions = this.state.regions) => {
     let crArray = regions.filter((region) => region.type === 'constant');
     let cr = crArray[crArray.length - 1];
+    let line_count = 0;
     // let cr = regions.find(region => region.type === 'constant');
 
     let constantRegion = {};
@@ -257,12 +267,15 @@ class RegionComponent extends Component {
     let dr = drArray[drArray.length - 1];
     // let dr = regions.find(region => region.type === 'data');
     let dataRegion = {};
-    if(dr) dataRegion = {
+    if(dr) {
+      line_count = dr.data.value;
+      dataRegion = {
         xmin: dr.x,
         xmax: dr.width + dr.x,
         ymin: dr.y,
         ymax: dr.height + dr.y,
-    };
+      };
+    }
 
     let hr = regions.filter(region => region.type === 'headers');
     let headerRegion = {};
@@ -291,38 +304,18 @@ class RegionComponent extends Component {
         }
       }
     });
-
-    regionCoordinates = {
+    let regionCoordinates = {
       constant: constantRegion,
       headers: headerRegion,
-      values: valuesRegion,
-      data: dataRegion
+      value: valuesRegion,
+      data: dataRegion,
+      line_count
     };
-    console.log("regionCoordinates", regionCoordinates)
-    //
-    // let regionCoordinates = [];
-    // regionCoordinates = regions.map(region => {
-    //   let x1 = region.x;
-    //   let y1 = region.y;
-    //   let x2 = region.width + region.x;
-    //   let y2 = region.height + region.y;
-    //   return {
-    //     x1,
-    //     y1,
-    //     x2,
-    //     y2,
-    //     // value: {...region.data},
-    //   };
-    // });
-    // this.props.updateRegions(
-    //   regions,
-    //   regionCoordinates,
-    //   this.props.fileToShow.fileNumber,
-    // );
-    // this.setState({
-    //   regions,
-    //   regionCoordinates,
-    // });
+    console.log("regionCoordinates", regionCoordinates);
+    this.setState({
+      regions,
+      regionCoordinates,
+    });
   };
 
 
@@ -340,14 +333,6 @@ class RegionComponent extends Component {
   //     .on("zoom", zoomed);
   // };
 
-  // handleSubmit = () => {
-  // 	this.props.handleIndividualSubmit();
-  // 	this.setState({
-  // 		regions: [],
-  // 		regionCoordinates: []
-  // 	});
-  // }
-
   render() {
     const { fileToShow } = this.props;
     if (fileToShow) {
@@ -364,9 +349,7 @@ class RegionComponent extends Component {
               </button>
 
               <button
-                onClick={(e) => {
-                  this.toSaveEachImg(e);
-                }}
+                onClick={() => {this.props.handleSingleUpload(this.state.regionCoordinates, this.props.fileToShow.fileNumber)}}
                 className="savePageButton"
               >
                 Save this Page
@@ -395,13 +378,6 @@ class RegionComponent extends Component {
                 {/*onClick={() => {this.imageZooming()}}*/}
                 {/*/>*/}
               </div>
-
-              {/* <button
-               onClick={this.handleSubmit}
-               className="buttonStyle"
-               >
-               Submit
-               </button> */}
             </div>
             <ReactRegionSelect
               regions={this.state.regions}
