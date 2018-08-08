@@ -10,7 +10,7 @@ export const fileObject = {
 	regions: [],
 };
 
-const detailsObj = {
+export const detailsObj = {
 	constant: {
 		xmin: 0,
 		ymin: 0,

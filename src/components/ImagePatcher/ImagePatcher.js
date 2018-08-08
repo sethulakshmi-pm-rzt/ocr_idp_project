@@ -11,7 +11,6 @@ import downArrow from './../../images/001-down-arrow.svg';
 import edit from './../../images/003-marker.svg';
 import deleteIcon from './../../images/004-delete.svg';
 import './ImagePatcher.css';
-
 // import * as d3 from 'd3';
 
 class LabelRegion extends Component {
@@ -30,7 +29,6 @@ class LabelRegion extends Component {
           required
           defaultValue={'others'}
           onChange={(e) => {
-            console.log('EEE', e.target.value);
             this.setState({
               dropDownData: e.target.value,
             });
@@ -45,10 +43,10 @@ class LabelRegion extends Component {
         {this.state.dropDownData &&
         <div
           className={'regionForm'}
-          // onSubmit={event => this.onFormSubmit(event, regionProps.index)}
         >
           <input
             type="text"
+            placeholder={this.state.dropDownData}
             ref={node => (this.input = node)}
           />
 
@@ -56,8 +54,7 @@ class LabelRegion extends Component {
             className="okayButton"
             onClick={(event) => {
               event.preventDefault();
-              onFormSubmit(event, regionProps.index, this.input.value)
-              console.log("SAVEDDD", this.state.dropDownData)
+              onFormSubmit(event, regionProps.index, this.input.value, this.state.dropDownData)
             }}
           >
             OK
@@ -69,12 +66,14 @@ class LabelRegion extends Component {
 }
 
 class RegionComponent extends Component {
-  onFormSubmit = (event, regionPropsIndex, value) => {
+  onFormSubmit = (event, regionPropsIndex, value, category) => {
     event.preventDefault();
     this.changeRegionData(
       regionPropsIndex,
       value,
+      category,
     );
+
     this.setState({
       editMode: true,
       editIndex: regionPropsIndex + 1,
@@ -193,12 +192,6 @@ class RegionComponent extends Component {
       editIndex: 0,
       activeImg: 0,
     };
-
-    // this.regionRenderer = this.regionRenderer.bind(this);
-    // this.handleChange = this.handleChange.bind(this);
-    this.handleUndo = this.handleUndo.bind(this);
-    this.calculateCoordinates = this.calculateCoordinates.bind(this);
-    // this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -215,59 +208,122 @@ class RegionComponent extends Component {
    * @param index
    * @param value
    */
-  changeRegionData(index, value) {
+  changeRegionData = (index, value, category) => {
     const region = this.state.regions[index];
-    region.data.value = value;
+    region['type'] = category;
+    region.data['value'] = value;
+
     this.calculateCoordinates([
       ...this.state.regions.slice(0, index),
       {
         ...region,
-        data: region.data,
+        data: region.data
       },
-      ...this.state.regions.slice(index + 1),
+      ...this.state.regions.slice(index + 1)
     ]);
   }
 
   /**
    * Undo the last selected area
    */
-  handleUndo() {
+  handleUndo = () => {
     let regions = this.state.regions;
     if (regions.length > 0) {
       regions.pop();
     }
     this.calculateCoordinates(regions);
-  }
+  };
 
   /**
    * Calculate the coordinates of all the selected areas
    * Also send the regions with values
    */
-  calculateCoordinates(regions) {
-    let regionCoordinates = [];
-    regionCoordinates = regions.map(region => {
-      let x1 = region.x;
-      let y1 = region.y;
-      let x2 = region.width + region.x;
-      let y2 = region.height + region.y;
-      return {
-        x1,
-        y1,
-        x2,
-        y2,
-        value: region.data.value,
+  calculateCoordinates = (regions) => {
+    let regionCoordinates = {};
+
+    let crArray = regions.filter((region) => region.type === 'constant');
+    let cr = crArray[crArray.length - 1];
+    // let cr = regions.find(region => region.type === 'constant');
+
+    let constantRegion = {};
+    if(cr) constantRegion = {
+      xmin: cr.x,
+      xmax: cr.width + cr.x,
+      ymin: cr.y,
+      ymax: cr.height + cr.y,
+    };
+
+    let drArray = regions.filter((region) => region.type === 'data');
+    let dr = drArray[drArray.length - 1];
+    // let dr = regions.find(region => region.type === 'data');
+    let dataRegion = {};
+    if(dr) dataRegion = {
+        xmin: dr.x,
+        xmax: dr.width + dr.x,
+        ymin: dr.y,
+        ymax: dr.height + dr.y,
+    };
+
+    let hr = regions.filter(region => region.type === 'headers');
+    let headerRegion = {};
+    hr.map(region => {
+      headerRegion = {
+        ...headerRegion,
+        [region.data.value]: {
+          xmin: region.x,
+          xmax: region.width + region.x,
+          ymin: region.y,
+          ymax: region.height + region.y,
+        }
       };
     });
-    this.props.updateRegions(
-      regions,
-      regionCoordinates,
-      this.props.fileToShow.fileNumber,
-    );
-    this.setState({
-      regions,
-      regionCoordinates,
+
+    let or = regions.filter(region => region.type === 'others');
+    let valuesRegion = {};
+    or.map(region => {
+      valuesRegion = {
+        ...valuesRegion,
+        [region.data.value]: {
+          xmin: region.x,
+          xmax: region.width + region.x,
+          ymin: region.y,
+          ymax: region.height + region.y,
+        }
+      }
     });
-  }
+
+    regionCoordinates = {
+      constant: constantRegion,
+      headers: headerRegion,
+      values: valuesRegion,
+      data: dataRegion
+    };
+    console.log("regionCoordinates", regionCoordinates)
+    //
+    // let regionCoordinates = [];
+    // regionCoordinates = regions.map(region => {
+    //   let x1 = region.x;
+    //   let y1 = region.y;
+    //   let x2 = region.width + region.x;
+    //   let y2 = region.height + region.y;
+    //   return {
+    //     x1,
+    //     y1,
+    //     x2,
+    //     y2,
+    //     // value: {...region.data},
+    //   };
+    // });
+    // this.props.updateRegions(
+    //   regions,
+    //   regionCoordinates,
+    //   this.props.fileToShow.fileNumber,
+    // );
+    // this.setState({
+    //   regions,
+    //   regionCoordinates,
+    // });
+  };
 
 
   // imageZooming = () => {
@@ -284,7 +340,7 @@ class RegionComponent extends Component {
   //     .on("zoom", zoomed);
   // };
 
-  // handleSubmit() {
+  // handleSubmit = () => {
   // 	this.props.handleIndividualSubmit();
   // 	this.setState({
   // 		regions: [],
