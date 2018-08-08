@@ -10,4 +10,5 @@ export function* watcherSaga() {
 	// yield takeLatest("CREATE_TOKEN", commonSaga);
 	yield takeLatest("UPLOAD_FILE", fileSaga);
 	yield takeLatest("UPDATE_REGION", commonSaga);
+	yield takeLatest("PROCEED_DETAILS", commonSaga);
 }

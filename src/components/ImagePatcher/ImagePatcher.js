@@ -309,9 +309,8 @@ class RegionComponent extends Component {
       headers: headerRegion,
       value: valuesRegion,
       data: dataRegion,
-      line_count
+      line_count,
     };
-    console.log("regionCoordinates", regionCoordinates);
     this.setState({
       regions,
       regionCoordinates,
@@ -349,7 +348,7 @@ class RegionComponent extends Component {
               </button>
 
               <button
-                onClick={() => {this.props.handleSingleUpload(this.state.regionCoordinates, this.props.fileToShow.fileNumber)}}
+                onClick={() => {this.props.handleSingleUpload(this.state.regionCoordinates, this.props.fileToShow.relativePath)}}
                 className="savePageButton"
               >
                 Save this Page

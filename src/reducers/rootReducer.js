@@ -9,6 +9,8 @@ const rootReducer = combineReducers({
 	form: formReducer,
 	file: fetchWithNamedType("FILE"),
 	loader: enableWithNamedType("LOADER"),
+	region: fetchWithNamedType("REGION"),
+	proceed: fetchWithNamedType("DETAILS"),
 });
 
 export default rootReducer;

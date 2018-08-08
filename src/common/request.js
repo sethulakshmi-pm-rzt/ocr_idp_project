@@ -14,7 +14,7 @@ export function request(actions) {
 	if (data) {
 		return axios({
 			method,
-			url: `/rest/${url}`,
+			url: `http://192.168.46.27:8090/rest/${url}`,
 			data,
 			headers
 		})
@@ -23,7 +23,7 @@ export function request(actions) {
 	} else {
 		return axios({
 			method,
-			url: `/rest/${url}`,
+			url: `http://192.168.46.27:8090/rest/${url}`,
 			headers
 		})
 			.then(response => ({ response }))
@@ -43,7 +43,7 @@ export function fileRequest(actions, cb) {
 	};
 	return axios({
 		method,
-		url: `/rest/${url}`,
+		url: `http://192.168.46.27:8090/rest/${url}`,
 		data,
 		headers
 	})

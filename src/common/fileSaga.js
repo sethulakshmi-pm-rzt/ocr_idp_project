@@ -16,7 +16,7 @@ export function* fileSaga(actions) {
 			payload: { data: response.data.entity }
 		});
 		if (cb) {
-			cb();
+			cb(response);
 		}
 		yield put(disableAction("LOADER"));
 	} else {

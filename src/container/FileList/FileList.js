@@ -20,8 +20,12 @@ class FileList extends Component {
     })
   };
 
+	toProceed = (fileList) => {
+    this.props.handleProceed()
+  };
+
 	render() {
-		const { fileList } = this.props;
+		const { fileList, handleProceed } = this.props;
 		return (
 			<React.Fragment>
 				<div className="fileListContainer">
@@ -40,6 +44,7 @@ class FileList extends Component {
 					<button
 						className="buttonStyle"
 						style={{ margin: '5px 0px 0px 0px', float: 'right' }}
+            onClick={() => {this.toProceed(fileList)}}
 					>
 						Proceed
 					</button>

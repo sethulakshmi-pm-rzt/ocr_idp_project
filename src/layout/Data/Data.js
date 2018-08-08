@@ -8,7 +8,7 @@ import FileList from '../../container/FileList/FileList';
 
 class Data extends Component {
 	render() {
-		const { listItems, fileObjects, handleFileChange } = this.props;
+		const { listItems, fileObjects, handleFileChange, handleProceed } = this.props;
 		let uploadedFiles = fileObjects
 			? fileObjects.map(object => object.file)
 			: [];
@@ -20,6 +20,7 @@ class Data extends Component {
 				<FileList
 					fileList={uploadedFiles}
 					handleFileChange={handleFileChange}
+          handleProceed={handleProceed}
 				/>
 			</div>
 		);

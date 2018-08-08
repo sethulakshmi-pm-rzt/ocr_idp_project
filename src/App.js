@@ -21,7 +21,8 @@ class App extends Component {
 			fileToShow: null,
 			currentFile: null,
 			currentFileDetail: [],
-			currentFileRegions: []
+			currentFileRegions: [],
+      proceedData: [],
 		};
 
 		this.handleFilesUpload = this.handleFilesUpload.bind(this);
@@ -39,20 +40,32 @@ class App extends Component {
       fileName: file.name,
       fileNumber: index,
       details: [],
-      regions: []
+      regions: [],
+      relativePath: ''
     }));
 
     let formData = new FormData();
-    formData.append('files', uploadedFiles);
 
-    // this.props.commonAction('UPLOAD', 'FILE', 'post', 'file/uploadFile', formData);
-
-    this.setState({
-      fileObjects,
-      fileToShow: fileObjects[0],
-      currentFile: 0,
-      currentFileDetail: fileObjects[0].details,
-      currentFileRegions: fileObjects[0].regions
+    for (let i =0; i < uploadedFiles.length; i++) {
+      formData.append('files', uploadedFiles[i]);
+    }
+    this.props.commonAction('UPLOAD', 'FILE', 'post', 'file/uploadFile', formData, null, (response) => {
+      let newFileObjects = response.data.entity.listFiles.map((file, index) => (
+        {
+          ...fileObjects[index],
+          fileName: file.name,
+          fileNumber: index,
+          relativePath: file.relativePath,
+        }
+      ));
+      this.setState({
+        fileObjects: newFileObjects,
+        fileToShow: newFileObjects[0],
+        currentFile: 0,
+        currentFileDetail: newFileObjects[0].details,
+        currentFileRegions: newFileObjects[0].regions,
+        proceedData: newFileObjects,
+      })
     });
   }
 
@@ -73,11 +86,6 @@ class App extends Component {
 			},
 			...this.state.fileObjects.slice(index + 1)
 		];
-
-		console.log("update", this.state.fileObjects);
-
-    this.props.commonAction('UPDATE', 'REGION', 'put', 'file/saveTemplate', this.state.fileObjects);
-
 		this.setState({
 			fileObjects,
 			currentFileDetail: details,
@@ -85,9 +93,25 @@ class App extends Component {
 		});
 	}
 
-	handleSingleUpload = (coordinates, fileIndex) => {
-	  // console.log(coordinates ,fileIndex);
-    this.props.commonAction('UPDATE', 'REGION', 'put', 'file/saveTemplate', coordinates);
+	handleSingleUpload = (coordinates, fileRelativePath) => {
+    let data = {
+      template: {
+        ...coordinates,
+        path: fileRelativePath
+      }
+    };
+    this.props.commonAction('UPDATE', 'REGION', 'post', 'file/saveTemplate', data);
+  };
+
+	handleProceed = () => {
+
+	  let newProceedData = this.state.proceedData.map((item) => (
+      {
+        relativePath: item.relativePath,
+        filename: item.file.name
+      }
+    ));
+    this.props.commonAction('PROCEED', 'DETAILS', 'post', 'file/getData', newProceedData);
   };
 
 	/**
@@ -129,6 +153,7 @@ class App extends Component {
 						listItems={currentFileDetail}
 						fileObjects={fileObjects}
 						handleFileChange={this.handleFileChange}
+            handleProceed={this.handleProceed}
 					/>
 				</div>
 			</div>
