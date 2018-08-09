@@ -17,37 +17,36 @@ class LabelRegion extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      dropDownData: 'others',
+      dropDownData: 'keyValue',
     };
   }
 
   render() {
-    const { onFormSubmit, regionProps } = this.props;
+    const { onFormSubmit, regionProps, defaultDropdown } = this.props;
 
     let placeholderData = '';
 
-    if (this.state.dropDownData === 'others') {
+    if (this.state.dropDownData === 'keyValue') {
       placeholderData = 'Values'
     } else if (this.state.dropDownData === 'data') {
       placeholderData = 'Line count'
     }
     else {
       placeholderData = 'Header Data'
-
     }
-
+    const showForm = this.state.dropDownData !== 'constant' && defaultDropdown !== 'constant';
     return (
       <div className={'regionWrapper'}>
         <select
           required
-          defaultValue={'others'}
+          defaultValue={defaultDropdown}
           onChange={(e) => {
             this.setState({
               dropDownData: e.target.value,
             });
           }}
         >
-          <option value="others">others</option>
+          <option value="keyValue">Key pair</option>
           <option value="constant">constant</option>
           <option value="headers">headers</option>
           <option value="data">data</option>
@@ -56,7 +55,7 @@ class LabelRegion extends Component {
         <div
           className={'regionForm'}
         >
-          {(this.state.dropDownData !== 'constant') &&
+          {showForm &&
           <input
             type={this.state.dropDownData !== 'data' ? 'text' : 'number'}
             placeholder={placeholderData}
@@ -67,7 +66,7 @@ class LabelRegion extends Component {
             className="okayButton"
             onClick={(event) => {
               event.preventDefault();
-              (this.state.dropDownData !== 'constant')
+              showForm
                 ? onFormSubmit(event, regionProps.index, this.state.dropDownData, this.input.value)
                 : onFormSubmit(event, regionProps.index, this.state.dropDownData);
 
@@ -83,7 +82,7 @@ class LabelRegion extends Component {
 }
 
 class RegionComponent extends Component {
-  onFormSubmit = (event, regionPropsIndex, category, value = 0) => {
+  onFormSubmit = (event, regionPropsIndex, category, value = null) => {
     event.preventDefault();
     this.changeRegionData(
       regionPropsIndex,
@@ -149,7 +148,9 @@ class RegionComponent extends Component {
    */
   regionRenderer = (regionProps) => {
 
+
     if (!regionProps.isChanging) {
+      let defaultValue = this.state.regions.length === 1 ? 'constant' : 'keyValue';
       return (
         <div className="region">
           {(this.state.editMode && this.state.editIndex === regionProps.index)
@@ -158,15 +159,16 @@ class RegionComponent extends Component {
               <LabelRegion
                 onFormSubmit={this.onFormSubmit}
                 regionProps={regionProps}
+                defaultDropdown={defaultValue}
               />
             </div>
             :
             <div className={'rectDetail'}>
               <span className={'id'}>{regionProps.index + 1}. </span>
-              {this.state.regions[regionProps.index].data.value &&
+
               <span className={'values'}>
-                {this.state.regions[regionProps.index].data.value}
-              </span>}
+                {this.state.regions[regionProps.index].data.value === null ? 'Constant' : this.state.regions[regionProps.index].data.value}
+              </span>
 
               <span
                 className={'editIcon'}
@@ -291,7 +293,7 @@ class RegionComponent extends Component {
       };
     });
 
-    let or = regions.filter(region => region.type === 'others');
+    let or = regions.filter(region => region.type === 'keyValue');
     let valuesRegion = {};
     or.map(region => {
       valuesRegion = {
@@ -309,7 +311,7 @@ class RegionComponent extends Component {
       headers: headerRegion,
       value: valuesRegion,
       data: dataRegion,
-      line_count,
+      line_count
     };
     this.setState({
       regions,

@@ -62,7 +62,7 @@ class UploadContainer extends Component {
 					<Field
 						name="uploadField"
 						component={Upload}
-						accept={'image/png, image/jpeg, image/jpg'}
+						accept={'image/png, image/jpeg, image/jpg , image/tiff'}
 						handleFilesUpload={this.props.handleFilesUpload}
 					/>
 				</form>

@@ -50,22 +50,32 @@ class App extends Component {
       formData.append('files', uploadedFiles[i]);
     }
     this.props.commonAction('UPLOAD', 'FILE', 'post', 'file/uploadFile', formData, null, (response) => {
-      let newFileObjects = response.data.entity.listFiles.map((file, index) => (
-        {
-          ...fileObjects[index],
-          fileName: file.name,
-          fileNumber: index,
-          relativePath: file.relativePath,
-        }
-      ));
-      this.setState({
-        fileObjects: newFileObjects,
-        fileToShow: newFileObjects[0],
-        currentFile: 0,
-        currentFileDetail: newFileObjects[0].details,
-        currentFileRegions: newFileObjects[0].regions,
-        proceedData: newFileObjects,
-      })
+      if(response.data.entity.labelled === true) {
+        let newProceedData = response.data.entity.listFiles.map((item) => (
+          {
+            relativePath: item.relativePath,
+            fileName: item.fileName
+          }
+        ));
+        this.props.commonAction('PROCEED', 'DETAILS', 'post', 'file/getData', newProceedData);
+      } else {
+        let newFileObjects = response.data.entity.listFiles.map((file, index) => (
+          {
+            ...fileObjects[index],
+            fileName: file.name,
+            fileNumber: index,
+            relativePath: file.relativePath,
+          }
+        ));
+        this.setState({
+          fileObjects: newFileObjects,
+          fileToShow: newFileObjects[0],
+          currentFile: 0,
+          currentFileDetail: newFileObjects[0].details,
+          currentFileRegions: newFileObjects[0].regions,
+          proceedData: newFileObjects,
+        })
+      }
     });
   }
 
@@ -95,10 +105,10 @@ class App extends Component {
 
 	handleSingleUpload = (coordinates, fileRelativePath) => {
     let data = {
-      template: {
+      label: {
         ...coordinates,
-        path: fileRelativePath
-      }
+      },
+      path: fileRelativePath
     };
     this.props.commonAction('UPDATE', 'REGION', 'post', 'file/saveTemplate', data);
   };
@@ -108,7 +118,7 @@ class App extends Component {
 	  let newProceedData = this.state.proceedData.map((item) => (
       {
         relativePath: item.relativePath,
-        filename: item.file.name
+        fileName: item.file.name
       }
     ));
     this.props.commonAction('PROCEED', 'DETAILS', 'post', 'file/getData', newProceedData);
