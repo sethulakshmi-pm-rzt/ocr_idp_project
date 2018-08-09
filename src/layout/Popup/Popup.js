@@ -80,75 +80,12 @@ const data = {
   heading: 'PopUpNewHeading',
   popupData: [
     {
-      dataHeading: 'DataHeading1',
-      data: dummy,
+      fileName:"/tmp/a63964b8-3191-4b86-89f9-f1a10fc7c86d/printckll_4_16259-1.png",
+      result:"\"{\\\"filename\\\": \\\"printckll_4_16259-1.png\\\", \\\"data\\\": {\\\"pay\\\": \\\"02/09/18\\\\nAMC LOGISTICS INC\\\", \\\"to\\\": \\\"146389\\\\n146389\\\\n146389\\\\n\\\\n14200\\\", \\\"amount\\\": \\\"\\\", \\\"date\\\": \\\"\\\", \\\"header data\\\": []}}\""
     },
     {
-      dataHeading: 'DataHeading2',
-      data: '-----data-----data-----data-----data-----data-----data-----data-----data-----data-----data-----data-----data-----data-----data-----data-----data-----data-----data'
-    },
-    {
-      dataHeading: 'DataHeading1',
-      data: '-----data-----data-----data-----data-----data-----data-----data-----data-----data'
-    },
-    {
-      dataHeading: 'DataHeading2',
-      data: '-----data-----data-----data-----data-----data-----data-----data-----data-----data-----data-----data-----data-----data-----data-----data-----data-----data-----data'
-    },
-    {
-      dataHeading: 'DataHeading1',
-      data: '-----data-----data-----data-----data-----data-----data-----data-----data-----data'
-    },
-    {
-      dataHeading: 'DataHeading2',
-      data: '-----data-----data-----data-----data-----data-----data-----data-----data-----data-----data-----data-----data-----data-----data-----data-----data-----data-----data'
-    },
-    {
-      dataHeading: 'DataHeading1',
-      data: '-----data-----data-----data-----data-----data-----data-----data-----data-----data'
-    },
-    {
-      dataHeading: 'DataHeading2',
-      data: '-----data-----data-----data-----data-----data-----data-----data-----data-----data-----data-----data-----data-----data-----data-----data-----data-----data-----data'
-    },
-    {
-      dataHeading: 'DataHeading1',
-      data: '-----data-----data-----data-----data-----data-----data-----data-----data-----data'
-    },
-    {
-      dataHeading: 'DataHeading2',
-      data: '-----data-----data-----data-----data-----data-----data-----data-----data-----data-----data-----data-----data-----data-----data-----data-----data-----data-----data'
-    },{
-      dataHeading: 'DataHeading1',
-      data: '-----data-----data-----data-----data-----data-----data-----data-----data-----data'
-    },
-    {
-      dataHeading: 'DataHeading2',
-      data: '-----data-----data-----data-----data-----data-----data-----data-----data-----data-----data-----data-----data-----data-----data-----data-----data-----data-----data'
-    },
-    {
-      dataHeading: 'DataHeading1',
-      data: '-----data-----data-----data-----data-----data-----data-----data-----data-----data'
-    },
-    {
-      dataHeading: 'DataHeading2',
-      data: '-----data-----data-----data-----data-----data-----data-----data-----data-----data-----data-----data-----data-----data-----data-----data-----data-----data-----data'
-    },
-    {
-      dataHeading: 'DataHeading1',
-      data: '-----data-----data-----data-----data-----data-----data-----data-----data-----data'
-    },
-    {
-      dataHeading: 'DataHeading2',
-      data: '-----data-----data-----data-----data-----data-----data-----data-----data-----data-----data-----data-----data-----data-----data-----data-----data-----data-----data'
-    },
-    {
-      dataHeading: 'DataHeading1',
-      data: '-----data-----data-----data-----data-----data-----data-----data-----data-----data'
-    },
-    {
-      dataHeading: 'DataHeading2',
-      data: '-----data-----data-----data-----data-----data-----data-----data-----data-----data-----data-----data-----data-----data-----data-----data-----data-----data-----data'
+      fileName:"/tmp/a63964b8-3191-4b86-89f9-f1a10fc7c86d/printckll_4_16259-1.png",
+      result:"\"{\\\"filename\\\": \\\"printckll_4_16259-1.png\\\", \\\"data\\\": {\\\"pay\\\": \\\"02/09/18\\\\nAMC LOGISTICS INC\\\", \\\"to\\\": \\\"146389\\\\n146389\\\\n146389\\\\n\\\\n14200\\\", \\\"amount\\\": \\\"\\\", \\\"date\\\": \\\"\\\", \\\"header data\\\": []}}\""
     }
   ]
 };

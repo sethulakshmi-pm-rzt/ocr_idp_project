@@ -17,7 +17,7 @@ class LabelRegion extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      dropDownData: 'keyValue',
+      dropDownData: props.defaultDropdown,
     };
   }
 
@@ -264,7 +264,6 @@ class RegionComponent extends Component {
       ymin: cr.y,
       ymax: cr.height + cr.y,
     };
-
     let drArray = regions.filter((region) => region.type === 'data');
     let dr = drArray[drArray.length - 1];
     // let dr = regions.find(region => region.type === 'data');
@@ -313,6 +312,9 @@ class RegionComponent extends Component {
       data: dataRegion,
       line_count
     };
+
+    // console.log("SSS", regionCoordinates)
+
     this.setState({
       regions,
       regionCoordinates,

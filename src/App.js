@@ -118,7 +118,7 @@ class App extends Component {
 	  let newProceedData = this.state.proceedData.map((item) => (
       {
         relativePath: item.relativePath,
-        fileName: item.file.name
+        filename: item.file.name
       }
     ));
     this.props.commonAction('PROCEED', 'DETAILS', 'post', 'file/getData', newProceedData);
@@ -151,7 +151,7 @@ class App extends Component {
 				<Header />
 				<div className="AppContent">
 					<Upload handleFilesUpload={this.handleFilesUpload} />
-					<Selection
+          <Selection
 						fileToShow={fileToShow}
 						updateRegions={this.updateRegions}
 						currentFileRegions={currentFileRegions}

@@ -41,7 +41,7 @@ class PopUp extends React.Component {
           >
             <div className={"contentHeaderWrapper"}>
               <h4 className={"contentHeader"}>
-                {item.dataHeading}
+                {item.fileName}
               </h4>
 
               <img
@@ -58,7 +58,7 @@ class PopUp extends React.Component {
               <pre
                 className={"contentData"}
               >
-                {JSON.stringify(item.data, null, '\t')}
+                {JSON.stringify(item.result, null, '\t')}
               </pre>
             </div>
           </div>
