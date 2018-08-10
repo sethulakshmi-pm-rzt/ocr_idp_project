@@ -9,7 +9,15 @@ class FileList extends Component {
 	constructor(props){
 		super(props);
 		this.state = {
-			activeItem: 0,
+			activeItem: props.currentFileNumber,
+		}
+	}
+
+  componentWillReceiveProps(nextProps) {
+		if(nextProps.currentFileNumber !== this.props.currentFileNumber) {
+			this.setState({
+        activeItem: nextProps.currentFileNumber
+			})
 		}
 	}
 
@@ -20,12 +28,12 @@ class FileList extends Component {
     })
   };
 
-	toProceed = (fileList) => {
+	toProceed = () => {
     this.props.handleProceed()
   };
 
 	render() {
-		const { fileList, handleProceed } = this.props;
+		const { fileList } = this.props;
 		return (
 			<React.Fragment>
 				<div className="fileListContainer">
@@ -44,7 +52,7 @@ class FileList extends Component {
 					<button
 						className="buttonStyle"
 						style={{ margin: '5px 0px 0px 0px', float: 'right' }}
-            onClick={() => {this.toProceed(fileList)}}
+            onClick={() => {this.toProceed()}}
 					>
 						Proceed
 					</button>

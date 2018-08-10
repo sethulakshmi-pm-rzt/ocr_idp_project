@@ -77,6 +77,14 @@ class App extends Component {
         })
       }
     });
+    // this.setState({
+    //   fileObjects: fileObjects,
+    //   fileToShow: fileObjects[0],
+    //   currentFile: 0,
+    //   currentFileDetail: fileObjects[0].details,
+    //   currentFileRegions: fileObjects[0].regions,
+    //   proceedData: fileObjects,
+    // })
   }
 
 	/**
@@ -85,9 +93,10 @@ class App extends Component {
 	 * @param details
 	 * @param index
 	 */
-	updateRegions(regions, details, index) {
-		let updatedFileObject = this.state.fileObjects[index];
-		updatedFileObject.details = details;
+	updateRegions(coordinateDetails, regions, currentFile) {
+	  let index = currentFile.fileNumber;
+	  let updatedFileObject = this.state.fileObjects[index];
+		updatedFileObject.details = coordinateDetails;
 		updatedFileObject.regions = regions;
 		let fileObjects = [
 			...this.state.fileObjects.slice(0, index),
@@ -98,7 +107,7 @@ class App extends Component {
 		];
 		this.setState({
 			fileObjects,
-			currentFileDetail: details,
+			currentFileDetail: coordinateDetails,
 			currentFileRegions: regions
 		});
 	}
@@ -130,7 +139,7 @@ class App extends Component {
 	 */
 	handleFileChange(index) {
 		let selectedFileObject = this.state.fileObjects[index];
-		this.setState({
+		selectedFileObject && this.setState({
 			fileToShow: selectedFileObject,
 			currentFile: index,
 			currentFileDetail: selectedFileObject.details,
@@ -143,9 +152,9 @@ class App extends Component {
 			fileToShow,
 			fileObjects,
 			currentFileDetail,
-			currentFileRegions
+			currentFileRegions,
+      currentFile
 		} = this.state;
-
 		return (
 			<div className="homePageWrapper">
 				<Header />
@@ -164,6 +173,7 @@ class App extends Component {
 					<Data
 						listItems={currentFileDetail}
 						fileObjects={fileObjects}
+            currentFileNumber={currentFile}
 						handleFileChange={this.handleFileChange}
             handleProceed={this.handleProceed}
 					/>

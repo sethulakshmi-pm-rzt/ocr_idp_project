@@ -11,6 +11,7 @@ import downArrow from './../../images/001-down-arrow.svg';
 import edit from './../../images/003-marker.svg';
 import deleteIcon from './../../images/004-delete.svg';
 import './ImagePatcher.css';
+
 // import * as d3 from 'd3';
 
 class LabelRegion extends Component {
@@ -27,12 +28,12 @@ class LabelRegion extends Component {
     let placeholderData = '';
 
     if (this.state.dropDownData === 'keyValue') {
-      placeholderData = 'Values'
+      placeholderData = 'Values';
     } else if (this.state.dropDownData === 'data') {
-      placeholderData = 'Line count'
+      placeholderData = 'Line count';
     }
     else {
-      placeholderData = 'Header Data'
+      placeholderData = 'Header Data';
     }
     const showForm = this.state.dropDownData !== 'constant' && defaultDropdown !== 'constant';
     return (
@@ -115,21 +116,11 @@ class RegionComponent extends Component {
   };
 
   toPreviousImg = () => {
-    if (this.state.activeImg > 0) {
-      this.props.handleFileChange(this.state.activeImg - 1);
-      this.setState({
-        activeImg: this.state.activeImg - 1,
-      });
-    }
+    this.props.handleFileChange(this.props.fileToShow.fileNumber - 1);
   };
 
   toNextImg = () => {
-    if (this.state.activeImg < this.props.fileObjects.length - 1) {
-      this.props.handleFileChange(this.state.activeImg + 1);
-      this.setState({
-        activeImg: this.state.activeImg + 1,
-      });
-    }
+      this.props.handleFileChange(this.props.fileToShow.fileNumber + 1);
   };
 
   /**
@@ -195,28 +186,6 @@ class RegionComponent extends Component {
       );
     }
   };
-
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      regions: this.props.currentFileRegions,
-      regionCoordinates: [],
-      editMode: true,
-      editIndex: 0,
-      activeImg: 0,
-    };
-  }
-
-  componentWillReceiveProps(nextProps) {
-    if (this.props.currentFileRegions !== nextProps.currentFileRegions) {
-      this.setState({
-        regions: nextProps.currentFileRegions,
-        regionCoordinates: [],
-      });
-    }
-  }
-
   /**
    * Get the value of corresponding selected area
    * @param index
@@ -231,9 +200,9 @@ class RegionComponent extends Component {
       ...this.state.regions.slice(0, index),
       {
         ...region,
-        data: region.data
+        data: region.data,
       },
-      ...this.state.regions.slice(index + 1)
+      ...this.state.regions.slice(index + 1),
     ]);
   };
   /**
@@ -246,7 +215,6 @@ class RegionComponent extends Component {
     }
     this.calculateCoordinates(regions);
   };
-
   /**
    * Calculate the coordinates of all the selected areas
    * Also send the regions with values
@@ -258,7 +226,7 @@ class RegionComponent extends Component {
     // let cr = regions.find(region => region.type === 'constant');
 
     let constantRegion = {};
-    if(cr) constantRegion = {
+    if (cr) constantRegion = {
       xmin: cr.x,
       xmax: cr.width + cr.x,
       ymin: cr.y,
@@ -268,7 +236,7 @@ class RegionComponent extends Component {
     let dr = drArray[drArray.length - 1];
     // let dr = regions.find(region => region.type === 'data');
     let dataRegion = {};
-    if(dr) {
+    if (dr) {
       line_count = dr.data.value;
       dataRegion = {
         xmin: dr.x,
@@ -288,7 +256,7 @@ class RegionComponent extends Component {
           xmax: region.width + region.x,
           ymin: region.y,
           ymax: region.height + region.y,
-        }
+        },
       };
     });
 
@@ -302,25 +270,45 @@ class RegionComponent extends Component {
           xmax: region.width + region.x,
           ymin: region.y,
           ymax: region.height + region.y,
-        }
-      }
+        },
+      };
     });
     let regionCoordinates = {
       constant: constantRegion,
       headers: headerRegion,
       value: valuesRegion,
       data: dataRegion,
-      line_count
+      ['line count']: line_count,
     };
 
-    // console.log("SSS", regionCoordinates)
-
+    this.props.updateRegions(regionCoordinates, regions, this.props.fileToShow);
     this.setState({
       regions,
       regionCoordinates,
     });
   };
 
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      regions: this.props.currentFileRegions,
+      regionCoordinates: [],
+      editMode: true,
+      editIndex: 0
+    };
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (this.props.currentFileRegions !== nextProps.currentFileRegions) {
+      this.setState({
+        regions: nextProps.currentFileRegions,
+        regionCoordinates: [],
+        editMode: true,
+        editIndex: nextProps.currentFileRegions.length
+      });
+    }
+  }
 
   // imageZooming = () => {
   //
@@ -352,7 +340,7 @@ class RegionComponent extends Component {
               </button>
 
               <button
-                onClick={() => {this.props.handleSingleUpload(this.state.regionCoordinates, this.props.fileToShow.relativePath)}}
+                onClick={() => {this.props.handleSingleUpload(this.state.regionCoordinates, this.props.fileToShow.relativePath);}}
                 className="savePageButton"
               >
                 Save this Page

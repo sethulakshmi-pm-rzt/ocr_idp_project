@@ -8,7 +8,7 @@ import FileList from '../../container/FileList/FileList';
 
 class Data extends Component {
 	render() {
-		const { listItems, fileObjects, handleFileChange, handleProceed } = this.props;
+		const { listItems, fileObjects, handleFileChange, handleProceed, currentFileNumber } = this.props;
 		let uploadedFiles = fileObjects
 			? fileObjects.map(object => object.file)
 			: [];
@@ -21,6 +21,7 @@ class Data extends Component {
 					fileList={uploadedFiles}
 					handleFileChange={handleFileChange}
           handleProceed={handleProceed}
+					currentFileNumber={currentFileNumber}
 				/>
 			</div>
 		);
