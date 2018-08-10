@@ -7,7 +7,8 @@
 import Popup from 'reactjs-popup';
 import React from 'react';
 import './Popup.css';
-import downIcon from './../../images/001-down-arrow.svg'
+import downIcon from './../../images/001-down-arrow.svg';
+import { popupHeading } from './../../Utils'
 
 class PopUp extends React.Component {
 
@@ -29,11 +30,11 @@ class PopUp extends React.Component {
   popupBody = (data, activeValue, expanded) => (
     <div className={"popupDataBody"}>
       <h2 className={"popupDataBodyHead"}>
-        {data.heading}
+        {popupHeading}
       </h2>
 
       <div className={"popupContentWrapper"}>
-        {data.popupData.map((item, index) =>
+        {data.length > 0 && data.map((item, index) =>
           <div
             key={index}
             className={"singleContent"}

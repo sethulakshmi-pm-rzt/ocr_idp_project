@@ -41,7 +41,7 @@ class App extends Component {
       fileNumber: index,
       details: [],
       regions: [],
-      relativePath: ''
+      relativePath: '',
     }));
 
     let formData = new FormData();
@@ -150,7 +150,9 @@ class App extends Component {
 			<div className="homePageWrapper">
 				<Header />
 				<div className="AppContent">
-					<Upload handleFilesUpload={this.handleFilesUpload} />
+					<Upload
+            handleFilesUpload={this.handleFilesUpload}
+          />
           <Selection
 						fileToShow={fileToShow}
 						updateRegions={this.updateRegions}

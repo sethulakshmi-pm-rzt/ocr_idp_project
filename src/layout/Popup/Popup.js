@@ -7,88 +7,34 @@ import React, { Component } from 'react';
 import './Popup.css';
 import { PopUp } from './../../components';
 
-const dummy = {
-  "constant": {
-    "xmin": "465",
-    "ymin": "62",
-    "xmax": "804",
-    "ymax": "108"
-  },
-  "value": {
-    "address": {
-      "xmin": "35",
-      "ymin": "89",
-      "xmax": "459",
-      "ymax": "199"
-    },
-    "date": {
-      "xmin": "196",
-      "ymin": "260",
-      "xmax": "352",
-      "ymax": "295"
-    },
-    "vendor": {
-      "xmin": "194",
-      "ymin": "297",
-      "xmax": "467",
-      "ymax": "321"
-    },
-    "check": {
-      "xmin": "196",
-      "ymin": "345",
-      "xmax": "359",
-      "ymax": "371"
-    },
-    "amount": {
-      "xmin": "196",
-      "ymin": "367",
-      "xmax": "363",
-      "ymax": "406"
-    }
-  },
-  "headers": {
-    "pro": {
-      "xmin": "363",
-      "ymin": "432",
-      "xmax": "483",
-      "ymax": "480"
-    },
-    "amount": {
-      "xmin": "507",
-      "ymin": "436",
-      "xmax": "704",
-      "ymax": "486"
-    },
-    "reference": {
-      "xmin": "709",
-      "ymin": "441",
-      "xmax": "946",
-      "ymax": "484"
-    }
-  },
-  "data": {
-    "xmin": "352",
-    "ymin": "484",
-    "xmax": "967",
-    "ymax": "608"
-  },
-  "line count": "1"
-};
-
-
-const data = {
-  heading: 'PopUpNewHeading',
-  popupData: [
-    {
-      fileName:"/tmp/a63964b8-3191-4b86-89f9-f1a10fc7c86d/printckll_4_16259-1.png",
-      result:"\"{\\\"filename\\\": \\\"printckll_4_16259-1.png\\\", \\\"data\\\": {\\\"pay\\\": \\\"02/09/18\\\\nAMC LOGISTICS INC\\\", \\\"to\\\": \\\"146389\\\\n146389\\\\n146389\\\\n\\\\n14200\\\", \\\"amount\\\": \\\"\\\", \\\"date\\\": \\\"\\\", \\\"header data\\\": []}}\""
-    },
-    {
-      fileName:"/tmp/a63964b8-3191-4b86-89f9-f1a10fc7c86d/printckll_4_16259-1.png",
-      result:"\"{\\\"filename\\\": \\\"printckll_4_16259-1.png\\\", \\\"data\\\": {\\\"pay\\\": \\\"02/09/18\\\\nAMC LOGISTICS INC\\\", \\\"to\\\": \\\"146389\\\\n146389\\\\n146389\\\\n\\\\n14200\\\", \\\"amount\\\": \\\"\\\", \\\"date\\\": \\\"\\\", \\\"header data\\\": []}}\""
-    }
-  ]
-};
+// const data = {
+//   popupData: [
+//     {
+//       "filename": "171002_093617_58_FACTOR.tif",
+//       "result": {
+//         "data": {
+//           "pay": "(912) 632-4350\n12) 632-4029",
+//           "to": "Pride Corporation\n\n:ounts Payable\nl 5 1 361\n\n“MAM“ f‘_.",
+//           "amount": "",
+//           "date": "",
+//           "header data": []
+//         }
+//       }
+//     },
+//     {
+//       "filename": "171002_093617_58_FACTOR.tif",
+//       "result": {
+//         "data": {
+//           "pay": "(912) 632-4350\n12) 632-4029",
+//           "to": "Pride Corporation\n\n:ounts Payable\nl 5 1 361\n\n“MAM“ f‘_.",
+//           "amount": "",
+//           "date": "",
+//           "header data": []
+//         }
+//       }
+//     },
+//   ]
+// };
 
 class PopupComp extends Component {
 
@@ -124,7 +70,8 @@ class PopupComp extends Component {
         <PopUp
           open = {this.state.open}
           closeModal = {this.closeModal}
-          data={data}
+          data={this.props.proceedData}
+          // data={data.popupData}
           {...this.props}
         />
 

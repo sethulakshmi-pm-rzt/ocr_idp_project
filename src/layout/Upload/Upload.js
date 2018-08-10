@@ -6,6 +6,8 @@ import React, { Component } from 'react';
 import Upload from '../../container/Upload/Upload';
 import './Upload.css';
 import PopupComp from '../Popup/Popup';
+import { commonAction } from './../../common/actions';
+import { connect } from 'react-redux'
 
 class UploadLayout extends Component {
 	constructor(props){
@@ -27,10 +29,13 @@ class UploadLayout extends Component {
         <PopupComp
           popupOpen={this.state.popupOpen}
           handleModal={this.handleModal}
+          proceedData={this.props.proceed}
 				/>
 			</div>
 		);
 	}
 }
 
-export default UploadLayout;
+export default connect((state)=>({
+  proceed: state.proceed.data
+}), { commonAction })(UploadLayout);
